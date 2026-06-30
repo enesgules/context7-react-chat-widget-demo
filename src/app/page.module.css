@@ -1,142 +1,246 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
+  --ink: #111827;
+  --muted: #4b5563;
+  --paper: #f7fbf8;
+  --line: #c9d8ce;
+  --mint: #d8f7e6;
+  --green: #059669;
+  --green-deep: #047857;
+  --navy: #182033;
 
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+  min-height: 100vh;
   display: flex;
-  flex: 1;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  color: var(--ink);
+  background:
+    linear-gradient(90deg, rgba(5, 150, 105, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(24, 32, 51, 0.08) 1px, transparent 1px),
+    var(--paper);
+  background-size: 44px 44px;
   font-family: var(--font-geist-sans);
-  background-color: var(--background);
 }
 
 .main {
-  display: flex;
+  position: relative;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
   flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+  align-items: center;
+  gap: 72px;
+  padding: 96px 0 56px;
 }
 
-.intro {
+.hero {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  text-align: left;
   gap: 24px;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
+.kicker {
+  display: inline-flex;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--green-deep);
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  font-weight: 700;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
+.hero h1 {
+  max-width: 680px;
+  font-size: clamp(48px, 8vw, 92px);
+  line-height: 0.96;
+  font-weight: 750;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.hero p {
+  max-width: 600px;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.primaryLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid var(--green);
+  border-radius: 8px;
+  color: #fff;
+  background: var(--green);
+  font-weight: 700;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.preview {
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--navy);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 14px 14px 0 var(--mint);
+}
+
+.browserBar {
+  height: 44px;
+  display: flex;
+  align-items: center;
   gap: 8px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--navy);
+  background: #eef5f0;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.browserBar span {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--navy);
+  border-radius: 999px;
+  background: #fff;
 }
 
-/* Enable hover only on non-touch devices */
+.previewBody {
+  flex: 1;
+  padding: 28px;
+  color: #d1fae5;
+  background: var(--navy);
+}
+
+.previewLabel {
+  margin-bottom: 18px;
+  color: #a7f3d0;
+  font-size: 13px;
+  font-family: var(--font-geist-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.preview pre {
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.8;
+  font-family: var(--font-geist-mono);
+  white-space: pre-wrap;
+}
+
+.widgetPulse {
+  position: fixed;
+  right: 9.75px;
+  bottom: 9.75px;
+  width: 76px;
+  height: 76px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.widgetPulseRing {
+  position: absolute;
+  inset: 0;
+  border: 7px solid rgba(5, 150, 105, 0.72);
+  border-radius: 50%;
+  box-shadow:
+    0 0 28px rgba(5, 150, 105, 0.34),
+    inset 0 0 18px rgba(5, 150, 105, 0.12);
+  animation: pulseRing 5.8s ease-out infinite;
+}
+
+.widgetPulseRing:nth-child(2) {
+  animation-delay: 1.95s;
+}
+
+.widgetPulseRing:nth-child(3) {
+  animation-delay: 3.5s;
+}
+
+@keyframes pulseRing {
+  0% {
+    opacity: 0.94;
+    transform: scale(0.82);
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(4.2);
+  }
+}
+
+.primaryLink:focus-visible {
+  outline: 3px solid rgba(5, 150, 105, 0.32);
+  outline-offset: 4px;
+}
+
 @media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .primaryLink:hover {
+    background: var(--green-deep);
+    border-color: var(--green-deep);
+    transform: translateY(-1px);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 860px) {
   .main {
-    padding: 48px 24px;
+    grid-template-columns: 1fr;
+    gap: 44px;
+    padding-top: 64px;
   }
 
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .preview {
+    min-height: 300px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@media (max-width: 560px) {
+  .main {
+    width: min(100% - 28px, 1120px);
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+  .main {
+    padding-top: 44px;
+  }
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+  .hero {
+    gap: 18px;
+  }
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .hero p {
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  .preview {
+    min-height: 280px;
+    box-shadow: 8px 8px 0 var(--mint);
+  }
+
+  .previewBody {
+    padding: 22px;
+  }
+
+  .widgetPulse {
+    right: 9.75px;
+    bottom: 9.75px;
+    width: 76px;
+    height: 76px;
   }
 }
